@@ -1,0 +1,39 @@
+ public void zipString() {
+        String data="AAABBBaaaeeefssaaffss";
+        char[] dst = new char[data.length()];
+        data.getChars(0,data.length(),dst,0);
+        List<ByteInfo> infos = new ArrayList();
+        int j = 1;
+        for(int i = 0;i<dst.length;i += j ) {
+            j = 1;
+            ByteInfo info = new ByteInfo();
+            char current = dst[i];
+            info.b = current;
+            info.count = 1;
+            info.pos = i;
+            for(int jj = i+1;jj<dst.length;jj++) {
+                if(current == dst[jj]) {
+                    info.count = info.count+1;
+                    j = j+1;
+                }else {
+                    break;
+                }
+            }
+            infos.add(info);
+        }
+        StringBuilder builder = new StringBuilder();
+        for(ByteInfo info : infos){
+            if(info.count>1){
+                builder.append(info.b).append(info.count);
+            }else{
+                builder.append(info.b);
+            }
+        }
+        System.out.println(builder.toString());
+    }
+
+    class ByteInfo {
+        char b;
+        int count;
+        int pos;
+    }
