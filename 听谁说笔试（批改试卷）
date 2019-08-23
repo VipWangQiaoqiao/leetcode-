@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+
+public class Main{
+
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        String [] strArray = new String[n];
+
+        for(int i =0 ; i < n; i++){
+            strArray[i] = in.nextLine();
+        }
+
+        int[] score = new int[n];
+        for(int i =0 ; i <n; i++){
+            char[] arr=strArray[i].toCharArray();
+
+            char a = '-' , b = '-', c = '-', d = '-';
+
+            if(arr[0] == 'x') a = 'A';
+            if(arr[1] == 'x') b = 'B';
+            if(arr[2] == 'x') c = 'C';
+            if(arr[3] == 'x') d = 'D';
+            String c1 = String.valueOf(a) + String.valueOf(b) + String.valueOf(c) + String.valueOf(d);
+            c1.replaceAll("-","");
+            String c2 = "";
+            for(int j= 5 ; j<arr.length;j++){
+                c2+=arr[j];
+            }
+            if(c1.equals(c2))
+                score[i]=5;
+            else if(c2.contains(c1))
+                score[i]=3;
+            else
+                score[i]=0;
+            if(arr[0]=='o'&&arr[1]== 'o'&&arr[2] == 'o'&&arr[3] == 'o') score[i] = 0;
+        }
+
+        int ans = 0;
+        for(int k =0 ; k < n ; k++){
+            ans += score[k];
+        }
+        System.out.println(ans);
+    }
+}
