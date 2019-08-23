@@ -1,0 +1,37 @@
+捡贝壳
+
+
+
+ public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int variety = scanner.nextInt();
+        int volume = scanner.nextInt();
+
+        int[] nums = new int[variety];
+        int[] vos = new int[variety];
+
+        for (int i = 0; i < variety; i++) {
+
+            nums[i] = scanner.nextInt();
+            vos[i] = scanner.nextInt();
+        }
+
+
+        int currentv = 0;
+        int count = 0;
+        for (int j = 0; j < variety; j++) {
+
+            for (int n = 0; n < nums[j]; n++) {
+                int t = vos[j] + currentv;
+                if (t > volume) break;
+                currentv = t;
+                count++;
+            }
+        }
+
+        System.out.println(count);
+
+    }
+}
