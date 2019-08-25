@@ -1,0 +1,39 @@
+//统计字符串的个数
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Main{
+    
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        String string = in.nextLine();
+        ArrayList<Character> list = new ArrayList<>();
+        char[] chars = string.toCharArray();//将字符串转化成字符数组
+        for (int i = 0; i < chars.length; i++) {
+            char aChar = chars[i];
+            list.add(aChar);//将字符数组元素添加到集合中
+        }
+	 for  ( int  i  =   0 ; i  <  list.size()  -   1 ; i ++ )  {       
+      for  ( int  j  =  list.size()  -   1 ; j  >  i; j -- )  {       
+           if  (list.get(j).equals(list.get(i)))  {       
+              list.remove(j);       
+            }        
+        }        
+      } 
+        for (int i = 0; i < list.size(); i++) {//遍历集合取出每个字符
+            int count = 0;//定义计数器
+            Character character = list.get(i);
+            for (int j = 0; j < chars.length; j++) {//遍历数组取出每个字符和集合中的元素比较
+                char aChar = chars[j];
+                if (character.equals(aChar)){//如果集合中的元素有等于数组中的字符,计数器加1
+                    count++;
+                }
+            }
+            if(i==list.size()-1)
+                System.out.println(character + ":" + count );//打印结果
+            else
+                System.out.println(character + ":" + count + ",");//打印结果
+        }
+        
+    }
+}
