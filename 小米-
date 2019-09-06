@@ -1,0 +1,58 @@
+//有一行由 N 个数字组成的数字字符串，字符串所表示的数是一正整数。移除字符串中的 K 个数字，使剩下的数字是所有可能中最小的。
+
+
+import java.util.*;
+
+public class Main{
+    
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        String s = in.nextLine();
+        
+        System.out.println(solution(s));
+        
+    }
+    public  static String solution(String line) {
+  String[] strs = line.split(",");
+  String strcount = strs[1].trim();
+  int count = Integer.valueOf(strcount);
+  char[] charArr = strs[0].toCharArray();
+  long len = strs[0].length();
+ 
+  if (len == count) {
+    return 0 + "";
+  }
+  int index = 0;
+  int i = 1;
+  while (index < count && i < len) {
+    if (charArr[i - 1] <= charArr[i]) {
+      if (i + count == len) {
+          for (;i < len - index; i++) {
+            if(i == len - index - 1){
+              charArr[i] = ' ';
+            }else {
+              charArr[i] = charArr[i + 1];
+            }
+        }
+        index++;
+        i=1;
+      } else {
+        i++;
+      }
+    } else {
+      for(int j=i-1; j<len-index; j++){
+        if(j == len - index - 1){
+          charArr[j] = ' ';
+        }else{
+          charArr[j] = charArr[j + 1];
+        }
+      }
+      index++;
+      i = 1;
+    }
+  }
+  String resut = String.valueOf(charArr).trim();
+  return Long.valueOf(resut.isEmpty() ? "0" : resut) + "";
+}
+
+}
